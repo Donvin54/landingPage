@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        section {
+            width: 600px;
+            border: 2px solid black;
+            margin: 60px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 5px;
+            font-size: larger;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <h5>Advice #<span></span></h5>
+        <h1></h1>
+
+        <button>Click</button>
+    </section>
+
+    <script>
+        let sect = document.querySelector('section');
+        let textNum = document.querySelector('span');
+        let text = document.querySelector('h1');
+        let btn = document.querySelector('button');
+    
+
+       let qoutes = 'https://api.adviceslip.com/advice';
+
+       btn.addEventListener('click', fetchQoutes)
+
+
+       function fetchQoutes() {
+        text.innerHTML = 'Loading..';
+        fetch(qoutes)
+        .then(res =>  res.json())
+        .then(data => {
+            let {id, advice} = data.slip
+            textNum.innerHTML = id;
+            text.innerHTML = advice;
+        })
+        .catch(error => {
+            text.innerHTML = error;
+        })
+        
+       }
+
+
+       
+
+
+
+
+
+
+
+    </script>
+   
+    
+</body>
+</html>
